@@ -1,0 +1,93 @@
+*{
+    font-size: 50px;
+    box-sizing: border-box;
+    font-family: 'Gotu';
+    font-style: normal;
+}
+
+p{
+    margin:0;
+}
+
+.container{
+    width:100vw;
+    height: 100vh;
+    background: linear-gradient(222.1deg, #7C819C 16.86%, rgba(161, 164, 184, 0.53) 57.66%, rgba(130, 112, 94, 0.76) 86.8%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.select-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 90%;
+    height: 80vh;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+    border-radius: 25px;
+}
+
+.selectableobjects{
+    width: 90%;
+    background-color: #e4e5ec;
+    height: 75%;
+    margin-top: 2%;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 80%;
+}
+
+button{
+    background: #F55C0A;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 4.5vw;
+    border: none;
+    padding: 2.5vh;
+    margin:0;
+    width:20%;
+    height: auto;
+    font-weight: 400;
+    font-size: 0.5em;
+    color: #FFFFFF;
+}
+
+.headline{
+    padding: 1vh;
+}
+
+html, body{
+    width: 100%;
+    height: 100%;
+    margin:0;
+    font-size: 50px;
+}
+
+h1{
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 3vw;
+    line-height: 60px;
+    margin:0;
+    color: #494752;
+}
+
+@media only screen and (max-device-width: 650px) {
+    *{
+        font-size:36px;
+    }
+
+    h1{
+        font-size: 2em;
+    }
+
+}
