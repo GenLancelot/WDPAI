@@ -126,7 +126,7 @@ button:not(.button-nostyle){
     "one  three"
     "one  four";
     grid-template-columns: min-content auto;
-    grid-template-rows: 1.5fr 1fr 0.5fr;
+    grid-template-rows: 1.2fr 1fr auto;
 }
 
 .player-chat-icon{
@@ -136,21 +136,35 @@ button:not(.button-nostyle){
     background-color: #a82b2b;
 }
 
+.player-status-icon{
+    width: 1.8vh;
+    height: 1.8vh;
+    border-radius: 50%;
+    background-color: darkgreen;
+    position: absolute;
+    right: 15%;
+    bottom: 1%;
+}
+
 .player-icon-box{
     grid-area: one;
+    position: relative;
+    align-self: center;
 }
 
 .player-name{
     grid-area: two;
-    font-size: 0.8em;
+    font-size: 0.5em;
+    margin-left: 3%;
 }
 .player-last-message{
     grid-area: three;
-    font-size: 0.6em;
+    font-size: 0.35em;
+    margin-left: 3%;
 }
 .player-status{
     grid-area: four;
-    font-size: 0.4em;
+    font-size: 0.3em;
 }
 
 .headline-conversation{
