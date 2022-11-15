@@ -170,25 +170,26 @@ button:not(.button-nostyle){
 .headline-conversation{
     width: 100%;
     height: 10%;
-    background-color: aqua;
 }
 
 .conversation-screen{
     width: 100%;
     height: 80%;
-    background-color: rgb(88, 170, 34);
+    display: flex;
+    flex-direction: column-reverse;
+    overflow: auto;
 }
 
 .conversation-type{
     width: 100%;
     height: 10%;
-    background-color: aqua;
+    display: flex;
+    flex-direction: row;
 }
 
-.headline-conversation{
-    width: 100%;
-    height: 10%;
-    background-color: aqua;
+.conversation-type>img{
+    height: 60%;
+    margin: auto;
 }
 
 html, body{
@@ -214,6 +215,48 @@ h1{
     margin:2% 0 2% 0;
 }
 
+.message-row{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.message-row-receiver{
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+.message-time{
+    display: inline;
+    align-self: center;
+    color:grey;
+    opacity: 70%;
+    font-size: 0.3em;
+}
+
+.message{
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 4.5vw;
+    padding: 1vh;
+    margin: 1%;
+    width: 80%;
+    border: 1px solid grey;
+    font-size: 0.5em;
+}
+
+
+.sender{
+    background-color: #1d1449;
+    align-self: flex-end;
+}
+
+.receiver{
+    background-color: #494752;
+}
+
 input{
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 4.5vw;
@@ -223,6 +266,10 @@ input{
     padding: 1vh;
     margin:auto;
     font-size: 0.5em;
+}
+
+.chat-type-inputbox{
+    width: 90%;
 }
 
 .active{
