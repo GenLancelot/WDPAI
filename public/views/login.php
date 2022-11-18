@@ -11,8 +11,15 @@
             <div id="sublogo">Find people to play games!</div>
         </div>
         <div class="login-container">
-            <form>
+            <form action="login" method="POST">
                 <div id="loginform">
+                    <div class="message">
+                        <?php if(isset($messages)){
+                            foreach ($messages as $message) {
+                                echo $message;
+                            }
+                        }?>
+                    </div>
                     <h1>Login to our app</h1>
                     <input name="email" type="text" placeholder="unnamedplayer@gmail.com">
                     <input name="password" type="password" placeholder="password">
