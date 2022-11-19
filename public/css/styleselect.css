@@ -19,7 +19,7 @@ p{
     align-items: center;
 }
 
-.select-container, .info-container, .chat, .settings-container{
+.select-container, .info-container, .chat, .profile-container{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -275,13 +275,14 @@ input{
 .active{
     color: #F55C0A;
 }
-.settings-container{
+.profile-container{
     height: 100%;
     margin-top: 1%;
     margin-bottom: 1%;
     justify-content: flex-start;
+    overflow: auto;
 }
-.me{
+.profile-view{
     background-image: url('../photos/default_icon.jpg');
     border-radius: 50%;
     background-size: cover;
@@ -296,7 +297,7 @@ input{
 
 .player-wall{
     margin-top: 0;
-    background-image: url('../photos/default_background.jpg');
+    background-image: url('../photos/default_background_light.jpg');
     background-size: cover;
     background-position-x: center;
     background-position-y: center;
@@ -318,6 +319,81 @@ input{
     justify-self: center;
 }
 
+.profile-info{
+    width: 100%;
+    height: auto;
+}
+
+.profile-info>.player-description{
+    font-size: 0.5em;
+    margin: 5%;
+}
+
+.player-nickname
+{
+    color: white;
+    grid-column: 2;
+    grid-row: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bolder;
+    font-size: 0.7em;
+    mix-blend-mode: difference;
+}
+
+.game{
+    display: grid;
+    grid-template-columns: 0.6fr auto 1fr 1.5fr 1fr 0.5fr;
+    grid-template-rows: 1fr;
+    height: 10vh;
+    justify-content: space-around;
+    justify-items: center;
+    margin: 2%;
+}
+
+.game-icon{
+    grid-column: 2;
+    height: inherit;
+    display: flex;
+    align-items: center;
+}
+
+.game-rank-symbol{
+    grid-column: 4;
+    height: inherit;
+    display: flex;
+    align-items: center;
+}
+
+.game-rank-text{
+    grid-column: 5;
+    height: inherit;
+    display: flex;
+    align-items: center;
+}
+
+.game-img{
+    height: 100%;
+}
+
+.edit{
+    grid-row: 1;
+    grid-column: 3;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    height: 100%;
+}
+.edit>img{
+    height: 0.6em;
+    margin-right: 1vw;
+    margin-top: 1vw;
+    mix-blend-mode: difference;
+    filter: invert(42%) sepia(93%) saturate(1352%) hue-rotate(132deg) brightness(119%) contrast(119%);
+}
+
+
 @media only screen and (max-device-width: 650px) {
     *{
         font-size:36px;
@@ -335,7 +411,23 @@ input{
         font-size: 1.2em;
     }
 
-    
+    .game{
+        height: 6vh;
+        margin-top: 3%;
+    }
+    .player-nickname {
+    font-size: 1em;
+    }
+    .edit>img{
+        height: 1.3em;
+    }
+}
+
+@media only screen and (max-device-width: 400px)
+{
+    .edit>img{
+        height: 1.8em;
+    }
 }
 
 @media only screen and (max-device-width: 900px) {
