@@ -271,10 +271,6 @@ input{
 .chat-type-inputbox{
     width: 90%;
 }
-
-.active{
-    color: #F55C0A;
-}
 .profile-container{
     height: 100%;
     margin-top: 1%;
@@ -393,6 +389,118 @@ input{
     filter: invert(42%) sepia(93%) saturate(1352%) hue-rotate(132deg) brightness(119%) contrast(119%);
 }
 
+.gameselect-wrapper{
+    width: 35vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    grid-column: 3;
+    position: relative;
+}
+.gameselect-btn, li{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.gameselect-btn {
+    height: 60%;
+    width: 100%;
+    overflow-x:clip;
+    padding: 5%;
+    font-size: 0.5em;
+    background: #fff;
+    border-radius: 7px;
+    justify-content: space-between;
+    box-shadow: 0 5px 3px rgb(0 0 0 / 10%);
+}
+
+.gameselect-btn i{
+    transition: transform 0.3s linear;
+}
+
+.gameselect-wrapper.active .gameselect-btn i{
+    transform: rotate(-180deg);
+}
+.gameselect-content{
+    display: none;
+    padding: 20px;
+    margin-top: 15px;
+    background: #fff;
+    border-radius: 7px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    position: absolute;
+    top: 75%;
+}
+.gameselect-wrapper.active .gameselect-content{
+    display: block;
+}
+.gameselect-content .gamesearch{
+    position: relative;
+}
+.gamesearch i{
+    top: 50%;
+    left: 15px;
+    color: #999;
+    font-size: 20px;
+    pointer-events: none;
+    transform: translateY(-50%);
+    position: absolute;
+}
+.gamesearch input{
+    height: 50px;
+    width: 100%;
+    outline: none;
+    font-size: 17px;
+    border-radius: 5px;
+    padding: 0 20px 0 43px;
+    border: 1px solid #B3B3B3;
+}
+.gamesearch input:focus{
+    padding-left: 42px;
+    border: 2px solid #4285f4;
+}
+.gamesearch input::placeholder{
+    color: #bfbfbf;
+}
+ul{
+    margin: 0;
+}
+.gameselect-content .gameoptions{
+    margin-top: 10px;
+    max-height: 250px;
+    overflow-y: auto;
+    padding-right: 7px;
+    padding-inline-start: 0px;
+}
+.gameoptions::-webkit-scrollbar{
+    width: 7px;
+}
+.gameoptions::-webkit-scrollbar-track{
+    background: #f1f1f1;
+    border-radius: 25px;
+}
+.gameoptions::-webkit-scrollbar-thumb{
+    background: #ccc;
+    border-radius: 25px;
+}
+.gameoptions::-webkit-scrollbar-thumb:hover{
+    background: #b3b3b3;
+}
+.gameoptions li{
+    height: 50px;
+    padding: 0 13px;
+    font-size: 21px;
+}
+.gameoptions li:hover, li.selected{
+    border-radius: 5px;
+    background: #f2f2f2;
+}
+
+form>.game>.add-game-button {
+    grid-column: 5;
+    width: 100%;
+}
 
 @media only screen and (max-device-width: 650px) {
     *{
