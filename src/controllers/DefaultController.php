@@ -11,4 +11,8 @@ class DefaultController extends AppController{
    public function chat(){
         $this->render('main_chat');
    }
+
+   public function settings(){
+        $this->render('settings');
+   }
 }
