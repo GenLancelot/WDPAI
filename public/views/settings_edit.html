@@ -29,12 +29,11 @@
                             </div>
                             <div class="gameselect-content">
                                 <div class="gamesearch">
-                                    <input spellcheck="false" type="text" placeholder="Search">
+                                    <input class="gameinput" spellcheck="false" type="text" placeholder="Search">
                                 </div>
                                 <ul class="gameoptions"></ul>
                             </div>
                         </div>
-                        <script src="../scripts/gameselect.js"></script>
 
                         <button class="add-game-button" type="submit">Add game</button>
                     </div>
@@ -44,23 +43,17 @@
                         <img class="game-img" src="../icons/LoL/LoL_icon.svg"/>
                     </div>
                     <div class="game-rank-text">
-                        <select class="rank-select">
-                            <optgroup label="Bronze">
-                                <option>Bronze I</option>
-                                <option>Bronze II</option>
-                                <option>Bronze III</option>
-                            </optgroup>
-                            <optgroup label="Silver">
-                                <option>Silver I</option>
-                                <option>Silver II</option>
-                                <option>Silver III</option>
-                            </optgroup>
-                            <optgroup label="Gold">
-                                <option>Gold I</option>
-                                <option>Gold II</option>
-                                <option selected>Gold III</option>
-                            </optgroup>
-                        </select>
+                        <div class="rankselect-wrapper">
+                            <div class="rankselect-btn">
+                                <span>Select rank</span>
+                            </div>
+                            <div class="rankselect-content">
+                                <div class="ranksearch">
+                                    <input class ="rankinput" spellcheck="false" type="text" placeholder="Search">
+                                </div>
+                                <ul class="rankoptions"></ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="game">
@@ -74,6 +67,7 @@
             </div>
         </div>
     </div>
+    <script src="../scripts/gameselect.js"></script>
 
 </div>
 </body>

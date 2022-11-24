@@ -389,7 +389,8 @@ input{
     filter: invert(42%) sepia(93%) saturate(1352%) hue-rotate(132deg) brightness(119%) contrast(119%);
 }
 
-.gameselect-wrapper{
+
+.gameselect-wrapper, .rankselect-wrapper{
     width: 35vw;
     display: flex;
     align-items: center;
@@ -397,13 +398,13 @@ input{
     grid-column: 3;
     position: relative;
 }
-.gameselect-btn, li{
+.gameselect-btn, .rankselect-btn, li{
     display: flex;
     align-items: center;
     cursor: pointer;
 }
 
-.gameselect-btn {
+.gameselect-btn, .rankselect-btn  {
     height: 60%;
     width: 100%;
     overflow-x:clip;
@@ -422,7 +423,7 @@ input{
 .gameselect-wrapper.active .gameselect-btn i{
     transform: rotate(-180deg);
 }
-.gameselect-content{
+.gameselect-content,.rankselect-content{
     display: none;
     padding: 20px;
     margin-top: 15px;
@@ -435,7 +436,13 @@ input{
 .gameselect-wrapper.active .gameselect-content{
     display: block;
 }
+.rankselect-wrapper.active .rankselect-content{
+    display: block;
+}
 .gameselect-content .gamesearch{
+    position: relative;
+}
+.rankselect-content .ranksearch{
     position: relative;
 }
 .gamesearch i{
@@ -447,7 +454,16 @@ input{
     transform: translateY(-50%);
     position: absolute;
 }
-.gamesearch input{
+.ranksearch i{
+    top: 50%;
+    left: 15px;
+    color: #999;
+    font-size: 20px;
+    pointer-events: none;
+    transform: translateY(-50%);
+    position: absolute;
+}
+.gamesearch .gameinput{
     height: 50px;
     width: 100%;
     outline: none;
@@ -456,11 +472,28 @@ input{
     padding: 0 20px 0 43px;
     border: 1px solid #B3B3B3;
 }
-.gamesearch input:focus{
+.ranksearch .rankinput{
+    height: 50px;
+    width: 100%;
+    outline: none;
+    font-size: 17px;
+    border-radius: 5px;
+    padding: 0 20px 0 43px;
+    border: 1px solid #B3B3B3;
+}
+
+.ranksearch .rankinput:focus{
     padding-left: 42px;
     border: 2px solid #4285f4;
 }
-.gamesearch input::placeholder{
+.ranksearch .rankinput:placeholder{
+    color: #bfbfbf;
+}
+.gamesearch .rankinput:focus{
+    padding-left: 42px;
+    border: 2px solid #4285f4;
+}
+.gamesearch .rankinput::placeholder{
     color: #bfbfbf;
 }
 ul{
@@ -473,6 +506,14 @@ ul{
     padding-right: 7px;
     padding-inline-start: 0px;
 }
+.rankselect-content .rankoptions{
+    margin-top: 10px;
+    max-height: 250px;
+    overflow-y: auto;
+    padding-right: 7px;
+    padding-inline-start: 0px;
+}
+
 .gameoptions::-webkit-scrollbar{
     width: 7px;
 }
@@ -496,7 +537,29 @@ ul{
     border-radius: 5px;
     background: #f2f2f2;
 }
-
+.rankoptions::-webkit-scrollbar{
+    width: 7px;
+}
+.rankoptions::-webkit-scrollbar-track{
+    background: #f1f1f1;
+    border-radius: 25px;
+}
+.rankoptions::-webkit-scrollbar-thumb{
+    background: #ccc;
+    border-radius: 25px;
+}
+.rankoptions::-webkit-scrollbar-thumb:hover{
+    background: #b3b3b3;
+}
+.rankoptions li{
+    height: 50px;
+    padding: 0 13px;
+    font-size: 21px;
+}
+.rankoptions li:hover, li.selected{
+    border-radius: 5px;
+    background: #f2f2f2;
+}
 form>.game>.add-game-button {
     grid-column: 5;
     width: 100%;
