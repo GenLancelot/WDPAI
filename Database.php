@@ -19,18 +19,18 @@ class Database
 
     public function connect()
     {
-        try{
-            $con = new PDO(
-                "pgsql:host=$this->host;post=5438;dbname=$this->database",
-                $this->username, $this->password
+        try {
+            $conn = new PDO(
+                "pgsql:host=$this->host;port=5433;dbname=$this->database",
+                $this->username,
+                $this->password
             );
 
-            $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            return $con;
-        }catch (PDOException $e)
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            return $conn;
+        } catch(PDOException $e)
         {
-            die('Connection failed: '.$e->getMessage());
+            die("Connection failed: ".$e->getMessage());
         }
     }
-
 }

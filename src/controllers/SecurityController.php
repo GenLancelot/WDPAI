@@ -6,6 +6,7 @@ require_once __DIR__.'/../repository/UserRepository.php';
 
 class SecurityController extends AppController
 {
+
     public function login()
     {
 
@@ -13,10 +14,11 @@ class SecurityController extends AppController
             return $this->render('login');
         }
 
-        $userRepository = new UserRepository();
+
         $email = $_POST["email"];
         $password = $_POST["password"];
 
+        $userRepository = new UserRepository();
         $user = $userRepository->getUser($email);
 
         if(!$user){
@@ -30,6 +32,24 @@ class SecurityController extends AppController
         if ($user->getPassword() !== $password){
             return $this->render('login', ['messages'=> ['password incorrect!']]);
         }
+
+        return $this->render('main_chat');
+    }
+
+    public function registration()
+    {
+
+        if (!$this->isPost()){
+            return $this->render('registration');
+        }
+
+        $email = $_POST["email"];
+        $password = $_POST["password"];
+        $name = "test";
+        $surname = "test";
+        $user = new User($email, $password, $name, $surname);
+        $userRepository = new UserRepository();
+        $userRepository->addUser($user);
 
         return $this->render('main_chat');
     }

@@ -11,7 +11,7 @@
             <div id="sublogo">Find people to play games!</div>
         </div>
         <div class="login-container">
-            <form>
+            <form action="registration" method="POST">
                 <div id="loginform">
                     <h1>Register to our app</h1>
                     <input name="email" type="text" placeholder="unnamedplayer@gmail.com">
