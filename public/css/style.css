@@ -116,6 +116,10 @@ h1{
     color: #000000;
 }
 
+.no-valid{
+    border: 1px solid red;
+}
+
 @media only screen and (max-device-width: 650px) {
     .container{
         flex-direction: column;
