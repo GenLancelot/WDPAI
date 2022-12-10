@@ -50,7 +50,7 @@
                 </form>
                 <div class="game">
                     <div class="game-icon">
-                        <img class="game-img" src="../icons/LoL/LoL_icon.svg"/>
+                        <img class="game-img" src="../icons/games/LoL_icon.svg"/>
                     </div>
                     <div class="game-rank-text">
                         <div class="rankselect-wrapper">
@@ -68,7 +68,7 @@
                 </div>
                 <div class="game">
                     <div class="game-icon">
-                        <img class="game-img" src="../icons/CsGo/counter-strike-global-offensive-2-logo-svgrepo-com.svg"/>
+                        <img class="game-img" src="../icons/games/counter-strike-global-offensive-2-logo-svgrepo-com.svg"/>
                     </div>
                     <div class="game-rank-text">
                         Supreme

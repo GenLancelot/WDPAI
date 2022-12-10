@@ -565,6 +565,28 @@ form>.game>.add-game-button {
     width: 100%;
 }
 
+.selectableobjects{
+    display: flex;
+    flex-direction: column;
+}
+
+.gamebox {
+    display: flex;
+    flex-direction: row;
+    height: 12vh;
+    text-align: right;
+    align-items: center;
+}
+
+.gamebox-icon{
+    width: 10%;
+    margin: auto;
+}
+
+.gamebox-name{
+    width: 80%;
+}
+
 @media only screen and (max-device-width: 650px) {
     *{
         font-size:36px;

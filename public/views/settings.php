@@ -32,7 +32,7 @@
             <div class="player-games">
                 <div class="game">
                     <div class="game-icon">
-                        <img class="game-img" src="../icons/LoL/LoL_icon.svg"/>
+                        <img class="game-img" src="../icons/games/LoL_icon.svg"/>
                     </div>
                     <div class="game-rank-symbol">
                         <img class="game-img"src="../icons/Lol/gold.png"/>
@@ -43,10 +43,10 @@
                 </div>
                 <div class="game">
                     <div class="game-icon">
-                        <img class="game-img" src="../icons/CsGo/counter-strike-global-offensive-2-logo-svgrepo-com.svg"/>
+                        <img class="game-img" src="../icons/games/counter-strike-global-offensive-2-logo-svgrepo-com.svg"/>
                     </div>
                     <div class="game-rank-symbol">
-                        <img class="game-img" src="../icons/CsGo/global-offensive.png"/>
+                        <img class="game-img" src="../icons/ranks/csgo_global-offensive.png"/>
                     </div>
                     <div class="game-rank-text">
                         Supreme
