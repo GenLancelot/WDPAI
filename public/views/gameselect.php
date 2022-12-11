@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
     <link rel="stylesheet"  type="text/css" href="public/css/styleselect.css">
-
+    <script type="text/javascript" src="public/scripts/search.js" defer></script>
     <title>Select your game</title>
 </head>
 <body>
@@ -12,7 +12,7 @@
         </div>
         <div class="select-container">
             <header class = "searchbox">
-                <input name ="searchgame" type = "text" placeholder="seach"/>
+                <input name ="searchgame" type = "text" placeholder="search game"/>
             </header>
             <div class ="selectableobjects">
                 <?php foreach ($games as $game): ?>
@@ -31,3 +31,12 @@
         </div>
     </div>
 </body>
+
+<template id="gameTemplate">
+    <div class="gamebox">
+        <img class ="gamebox-icon" src="">
+        <div class="gamebox-name">
+
+        </div>
+    </div>
+</template>

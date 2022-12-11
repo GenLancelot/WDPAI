@@ -55,4 +55,16 @@ class GameRepository extends Repository
         }
         return $result;
     }
+
+    public function getGameByTitle(string $search)
+    {
+        $search = '%'.strtolower($search).'%';
+
+        $stmt = $this->database->connect()->prepare('
+        SELECT * FROM games WHERE lower(name) LIKE :search');
+        $stmt->bindParam("search", $search, PDO::PARAM_STR);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
