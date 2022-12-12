@@ -2,14 +2,25 @@
 
 class Game
 {
+    private $id;
     private $name;
     private $filename;
 
-
-    public function __construct(string $name, string $filename)
+    public function __construct(int $id, string $name, string $filename)
     {
+        $this->id = $id;
         $this->name = $name;
         $this->filename = $filename;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function setId(int $id)
+    {
+        $this->id = $id;
     }
 
     public function getName(): string

@@ -21,9 +21,7 @@ class UserRepository extends Repository
 
         return new User(
             $user['email'],
-            $user['password'],
-            $user['name'],
-            $user['surname']
+            $user['password']
         );
     }
 
@@ -36,9 +34,7 @@ class UserRepository extends Repository
         // $date->format('Y-m-d')
         $stat->execute([
             $user->getEmail(),
-            $user->getPassword(),
-            $user->getName(),
-            $user->getSurname()
+            $user->getPassword()
         ]);
     }
 }

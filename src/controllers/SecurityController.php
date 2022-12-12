@@ -33,7 +33,7 @@ class SecurityController extends AppController
             return $this->render('login', ['messages'=> ['password incorrect!']]);
         }
 
-        return $this->render('main_chat');
+        Routing::run('games');
     }
 
     public function registration()
@@ -45,9 +45,7 @@ class SecurityController extends AppController
 
         $email = $_POST["email"];
         $password = $_POST["password"];
-        $name = "test";
-        $surname = "test";
-        $user = new User($email, $password, $name, $surname);
+        $user = new User($email, $password);
         $userRepository = new UserRepository();
         $userRepository->addUser($user);
 

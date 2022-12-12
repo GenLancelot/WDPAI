@@ -583,13 +583,41 @@ form>.game>.add-game-button {
     margin: auto;
 }
 
+img.gamebox-icon {
+    height: 90%;
+    margin: auto;
+}
+
 .gamebox-name{
     width: 80%;
+    font-size: 0.4em;
+    padding-right: 1%;
+}
+
+.gamebox.selected{
+    background: #8e8fa3;
+}
+
+@media only screen and (max-device-width: 1400px) {
+    .gamebox-name{
+        font-size: 0.6em;
+    }
+}
+
+@media only screen and (max-device-width: 800px) {
+    .gamebox-name{
+        font-size: 0.8em;
+    }
 }
 
 @media only screen and (max-device-width: 650px) {
+
     *{
         font-size:36px;
+    }
+
+    .gamebox-name{
+        font-size: 1em;
     }
 
     h1{

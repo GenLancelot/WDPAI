@@ -20,6 +20,7 @@ class GameRepository extends Repository
         }
 
         return new Game(
+            $game['ID_game'],
             $game['name'],
             $game['filename']
         );
@@ -32,6 +33,7 @@ class GameRepository extends Repository
 
 
         $stat->execute([
+            $game->getId(),
             $game->getName(),
             $game->getFilename()
         ]);
@@ -49,6 +51,7 @@ class GameRepository extends Repository
 
         foreach ($games as $game) {
             $result[] = new Game(
+                $game['ID_game'],
                 $game['name'],
                 $game['filename']
             );

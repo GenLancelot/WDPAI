@@ -2,6 +2,8 @@
 <head>
     <link rel="stylesheet"  type="text/css" href="public/css/styleselect.css">
     <script type="text/javascript" src="public/scripts/search.js" defer></script>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="public/scripts/search_selectable.js" defer></script>
     <title>Select your game</title>
 </head>
 <body>
@@ -15,8 +17,8 @@
                 <input name ="searchgame" type = "text" placeholder="search game"/>
             </header>
             <div class ="selectableobjects">
-                <?php foreach ($games as $game): ?>
-                    <div class="gamebox">
+                <?php foreach ($games as $game):?>
+                    <div class="gamebox" id="<?= $game->getId(); ?>">
                         <img class ="gamebox-icon" src="public/icons/games/<?= $game->getFilename(); ?>">
                         <div class="gamebox-name">
                             <?= $game->getName(); ?>
@@ -25,8 +27,8 @@
                 <?php endforeach; ?>
             </div>
             <div class="buttons">
-                <button type="submit">Skip</button>
-                <button type="submit">Next</button>
+                <button type="submit" id="skip">Skip</button>
+                <button type="submit" id="next">Next</button>
             </div>
         </div>
     </div>
