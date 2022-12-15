@@ -2,8 +2,6 @@ const games = document.getElementsByClassName('gamebox');
 const next = document.querySelector('button[id="next"]');
 const skip = document.querySelector('button[id="skip"]');
 
-console.log(next);
-console.log(skip);
 
 Array.from(games).forEach((game) => {
     game.addEventListener('click', () =>{
@@ -15,17 +13,12 @@ Array.from(games).forEach((game) => {
 });
 
 next.addEventListener('click', () =>{
-    myAjax();
+    //TODO: -
+    fetch('/chat', {
+        method: 'POST',
+        body: {
+            selected:'1'
+        }});
+   //window.location.assign("/chat");
 });
 
-function myAjax() {
-    $.ajax({
-        type: "POST",
-        url: '/chat',
-        data:{action:'call_this'},
-        success:function(html) {
-            alert(html);
-        }
-
-    });
-}

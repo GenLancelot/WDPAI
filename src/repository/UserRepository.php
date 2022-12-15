@@ -28,7 +28,7 @@ class UserRepository extends Repository
     public function addUser(User $user){
         $date = new DateTime();
         $stat = $this->database->connect()->prepare('
-            INSERT INTO public.users(email, password, name, surname) VALUES (?,?,?,?)
+            INSERT INTO public.users(email, password) VALUES (?,?)
         ');
 
         // $date->format('Y-m-d')
@@ -36,5 +36,29 @@ class UserRepository extends Repository
             $user->getEmail(),
             $user->getPassword()
         ]);
+    }
+
+    public function addUserPrioritizedGame(User $user, int $gameID){
+        $stat = $this->database->connect()->prepare('
+            SELECT * FROM public."users" u JOIN 
+                public."user_details" ud ON u."ID_user" = ud."ID_user" 
+                WHERE u.email  = :email;
+        ');
+        $email = $user->getEmail();
+        $stat->bindParam('email', $email, PDO::PARAM_STR);
+        $stat->execute();
+
+        $result = $stat->fetch(PDO::FETCH_ASSOC);
+
+        if($result == false){
+            return null;
+        }
+
+        $stat = $this->database->connect()->prepare('
+            UPDATE public."user_details" SET "ID_prioritizedGame" = :gameID WHERE "ID_user_details" = :userDetID;
+        ');
+        $stat->bindParam('gameID', $gameID, PDO::PARAM_INT);
+        $stat->bindParam('userDetID', $result['ID_user_details'], PDO::PARAM_INT);
+        $stat->execute();
     }
 }

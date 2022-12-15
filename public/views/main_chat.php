@@ -5,6 +5,11 @@
     <title>Teamfinder - chat</title>
 </head>
 <body>
+<?php if(isset($messages)){
+    foreach ($messages as $message) {
+        echo $message;
+    }
+}?>
     <div class="container">
         <div class="headline">
             <a>Find Player</a>

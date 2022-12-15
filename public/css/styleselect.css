@@ -73,6 +73,7 @@ button:not(.button-nostyle){
 }
 
 .headline{
+    margin-top: 1%;
     padding: 1vh;
     display: flex;
     flex-direction: row;
