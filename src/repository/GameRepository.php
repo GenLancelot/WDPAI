@@ -19,10 +19,25 @@ class GameRepository extends Repository
             return null;
         }
 
+        $stat = $this->database->connect()->prepare('
+            SELECT * FROM public."games_ranks" gr WHERE gr."ID_game"  = :name;
+        ');
+        $stat->bindParam('name', $game['ID_game'], PDO::PARAM_INT);
+        $stat->execute();
+
+        $ranks = $stat->fetchAll(PDO::FETCH_ASSOC);
+
+        $ranksArr = array();
+
+        foreach ($ranks as $rank){
+            array_push($ranksArr, $rank['name']);
+        }
+
         return new Game(
             $game['ID_game'],
             $game['name'],
-            $game['filename']
+            $game['filename'],
+            $ranksArr
         );
     }
 
@@ -50,10 +65,25 @@ class GameRepository extends Repository
         $games = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         foreach ($games as $game) {
+            $stat = $this->database->connect()->prepare('
+            SELECT * FROM public."games_ranks" gr WHERE gr."ID_game"  = :name;
+        ');
+            $stat->bindParam('name', $game['ID_game'], PDO::PARAM_INT);
+            $stat->execute();
+
+            $ranks = $stat->fetchAll(PDO::FETCH_ASSOC);
+
+            $ranksArr = array();
+
+            foreach ($ranks as $rank){
+                array_push($ranksArr, $rank['name']);
+            }
+
             $result[] = new Game(
                 $game['ID_game'],
                 $game['name'],
-                $game['filename']
+                $game['filename'],
+                $ranksArr
             );
         }
         return $result;
@@ -68,6 +98,18 @@ class GameRepository extends Repository
         $stmt->bindParam("search", $search, PDO::PARAM_STR);
         $stmt->execute();
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $games = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $newGames = array();
+        foreach ($games as $game) {
+            $stat = $this->database->connect()->prepare('
+            SELECT * FROM public."games_ranks" gr WHERE gr."ID_game"  = :name;');
+            $stat->bindParam('name', $game['ID_game'], PDO::PARAM_INT);
+            $stat->execute();
+
+            $ranks = $stat->fetchAll(PDO::FETCH_ASSOC);
+            array_push($game, $ranks);
+            array_push($newGames, $game);
+        }
+        return $newGames;
     }
 }

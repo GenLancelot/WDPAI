@@ -66,7 +66,8 @@ class SecurityController extends AppController
         $cookie_value = $email;
         setcookie($user_cookie, $cookie_value, time() + (60 * 30), "/");
 
-        return $this->render('main_chat');
+        $url = "http://$_SERVER[HTTP_HOST]";
+        header("Location: {$url}/settings_edit");
     }
 
     public function logout()

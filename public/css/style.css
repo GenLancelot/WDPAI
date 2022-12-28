@@ -105,6 +105,10 @@ html, body{
     font-size: 50px;
 }
 
+a:visited{
+    color: inherit;
+}
+
 h1{
 
     font-family: 'Inter';
@@ -114,6 +118,11 @@ h1{
     line-height: 44px;
     margin:0;
     color: #000000;
+}
+
+.message{
+    color: red;
+    font-size: 0.5em;
 }
 
 .no-valid{

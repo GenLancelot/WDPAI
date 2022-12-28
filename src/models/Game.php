@@ -5,12 +5,24 @@ class Game
     private $id;
     private $name;
     private $filename;
+    private $ranks;
 
-    public function __construct(int $id, string $name, string $filename)
+    public function __construct(int $id, string $name, string $filename,array $ranks)
     {
         $this->id = $id;
         $this->name = $name;
         $this->filename = $filename;
+        $this->ranks = $ranks;
+    }
+
+    public function getRanks(): array
+    {
+        return $this->ranks;
+    }
+
+    public function setRanks(array $ranks)
+    {
+        $this->ranks = $ranks;
     }
 
     public function getId(): int

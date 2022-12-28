@@ -20,8 +20,8 @@ class GamesController extends AppController
 
     public function games()
     {
-        $projects = $this->gamesRepository->getGames();
-        $this->render('gameselect', ['games' => $projects]);
+        $games = $this->gamesRepository->getGames();
+        $this->render('gameselect', ['games' => $games]);
     }
 
     public function addGame(){
@@ -36,7 +36,7 @@ class GamesController extends AppController
 
             return $this->render('gameselect', [
                 'messages' => $this->message,
-                'games' => $this->gamesRepository->getProjects()
+                'games' => $this->gamesRepository->getGames()
             ]);
         }
     }

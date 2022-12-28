@@ -8,7 +8,25 @@ const rankwrapper = document.querySelector(".rankselect-wrapper"),
     ranksearchInp = rankwrapper.querySelector(".rankinput"),
     rankoptions = rankwrapper.querySelector(".rankoptions");
 
-let games = ["GTA V","CS:GO","LeagueOfLegends","FIFA","Fortnite","Warzone", "Valorant"];
+let games = [];
+
+const data = {search: " "};
+fetch("/search", {
+    method: "POST",
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+}).then(function (response) {
+    return response.json();
+}).then(function (fetchedGames) {
+    fetchedGames.forEach(game => {
+        games.push(game.name);
+        console.log(game[0]);
+    });
+    addGame();
+});
+
 let ranks = ["Bronze I","Bronze II","Bronze III","Bronze IV",];
 
 function addGame(selectedGame) {

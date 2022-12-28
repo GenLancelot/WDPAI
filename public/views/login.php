@@ -25,7 +25,7 @@
                     <input name="password" type="password" placeholder="password">
                     <button type="submit">Next</button>
                 </div>
-                <p id="registration">Or sing up <a>here!</a></p>
+                <p id="registration">Or sing up <a href="/registration">here!</a></p>
             </form>
         </div>
     </div>

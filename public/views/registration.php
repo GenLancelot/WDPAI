@@ -19,7 +19,7 @@
                     <input name="confirmedpassword" type="password" placeholder="confirm password">
                     <button type="submit">Next</button>
                 </div>
-                <p id="registration">Or sing in <a>here!</a></p>
+                <p id="registration">Or sing in <a href="/login">here!</a></p>
             </form>
         </div>
     </div>
