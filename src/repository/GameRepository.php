@@ -112,4 +112,18 @@ class GameRepository extends Repository
         }
         return $newGames;
     }
+
+    public function getGameRanks(string $gameName)
+    {
+        $searchedGame = '%'.strtolower($gameName).'%';
+
+        $stmt = $this->database->connect()->prepare('
+        SELECT gr."name" FROM games 
+        JOIN public."games_ranks" gr ON gr."ID_game" = games."ID_game"
+                 WHERE lower(games.name) LIKE :searchedGame');
+        $stmt->bindParam("searchedGame", $searchedGame, PDO::PARAM_STR);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

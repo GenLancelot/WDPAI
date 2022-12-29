@@ -473,6 +473,7 @@ input{
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     position: absolute;
     top: 75%;
+    z-index: 1;
 }
 .gameselect-wrapper.active .gameselect-content{
     display: block;

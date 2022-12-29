@@ -50,35 +50,31 @@
                         <button class="add-game-button" type="submit">Add game</button>
                     </div>
                 </form>
-                <div class="game">
-                    <div class="game-icon">
-                        <img class="game-img" src="../icons/games/LoL_icon.svg"/>
-                    </div>
-                    <div class="game-rank-text">
-                        <div class="rankselect-wrapper">
-                            <div class="rankselect-btn">
-                                <span>Select rank</span>
-                            </div>
-                            <div class="rankselect-content">
-                                <div class="ranksearch">
-                                    <input class ="rankinput" spellcheck="false" type="text" placeholder="Search">
-                                </div>
-                                <ul class="rankoptions"></ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="game">
-                    <div class="game-icon">
-                        <img class="game-img" src="../icons/games/counter-strike-global-offensive-2-logo-svgrepo-com.svg"/>
-                    </div>
-                    <div class="game-rank-text">
-                        Supreme
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>
     <script src="public/scripts/gameselect.js"></script>
 </div>
 </body>
+
+<template id="gameSettingTemplate">
+    <div class="game">
+        <div class="game-icon">
+            <img class="game-img" src=""/>
+        </div>
+        <div class="game-rank-text">
+            <div class="rankselect-wrapper">
+                <div class="rankselect-btn">
+                    <span class="current-rank-state"></span>
+                </div>
+                <div class="rankselect-content">
+                    <div class="ranksearch">
+                        <input class ="rankinput" spellcheck="false" type="text" placeholder="Search">
+                    </div>
+                    <ul class="rankoptions"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

@@ -83,7 +83,6 @@ class SecurityController extends AppController
 
     public function gameselection(){
         $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
-        $decoded = "";
         if ($contentType === "application/json") {
             $content = trim(file_get_contents("php://input"));
             $decoded = json_decode($content, true);
@@ -97,4 +96,35 @@ class SecurityController extends AppController
             http_response_code(200);
         }
     }
+
+    public function getusergames(){
+        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+        if ($contentType === "application/json") {
+            $content = trim(file_get_contents("php://input"));
+            header('Content-type: application/json');
+
+            $email = 'test@test.pl';
+            $userRepository = new UserRepository();
+            $user = $userRepository->getUser($email);
+
+            http_response_code(200);
+            echo json_encode($userRepository->getUserGames($user));
+        }
+    }
+
+    public function getnotusergames(){
+        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+        if ($contentType === "application/json") {
+            $content = trim(file_get_contents("php://input"));
+            header('Content-type: application/json');
+
+            $email = 'test@test.pl';
+            $userRepository = new UserRepository();
+            $user = $userRepository->getUser($email);
+
+            http_response_code(200);
+            echo json_encode($userRepository->getNotUserGames($user));
+        }
+    }
+
 }
