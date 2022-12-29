@@ -61,4 +61,26 @@ class UserRepository extends Repository
         $stat->bindParam('userDetID', $result['ID_user_details'], PDO::PARAM_INT);
         $stat->execute();
     }
+
+    public function getUserGames(User $user){
+        $stat = $this->database->connect()->prepare('
+            SELECT * FROM public."users" u JOIN 
+                public."user_details" ud ON u."ID_user" = ud."ID_user"
+                JOIN public."user_game_info" ugi ON ud."ID_user_details" = ugi."ID_user_details"
+                JOIN public.games g ON ugi."ID_game" = g."ID_game"
+                JOIN public."games_ranks" gr ON ugi."ID_rank" = gr."ID_rank"
+                WHERE u.email  = :email;
+        ');
+        $email = $user->getEmail();
+        $stat->bindParam('email', $email, PDO::PARAM_STR);
+        $stat->execute();
+
+        $result = $stat->fetch(PDO::FETCH_ASSOC);
+
+        if($result == false){
+            return null;
+        }
+
+        return $result;
+    }
 }

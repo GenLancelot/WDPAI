@@ -13,4 +13,5 @@ Routing::post('search', 'GamesController');
 Routing::post('login', 'SecurityController');
 Routing::post('registration', 'SecurityController');
 Routing::post('settings_edit', 'SettingsController');
+Routing::post('gameselection', 'SecurityController');
 Routing::run($path);

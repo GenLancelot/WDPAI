@@ -78,12 +78,23 @@ class SecurityController extends AppController
     }
 
     public function chat(){
-        if($_POST['selected'] == '1') {
+        $this->render('main_chat');
+    }
+
+    public function gameselection(){
+        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+        $decoded = "";
+        if ($contentType === "application/json") {
+            $content = trim(file_get_contents("php://input"));
+            $decoded = json_decode($content, true);
+            header('Content-type: application/json');
+
             $email = 'test@test.pl';
             $userRepository = new UserRepository();
             $user = $userRepository->getUser($email);
-            $userRepository->addUserPrioritizedGame($user, 2);
+            $userRepository->addUserPrioritizedGame($user, $decoded['selected']);
+
+            http_response_code(200);
         }
-        $this->render('main_chat');
     }
 }

@@ -13,12 +13,26 @@ Array.from(games).forEach((game) => {
 });
 
 next.addEventListener('click', () =>{
-    //TODO: -
-    fetch('/chat', {
-        method: 'POST',
-        body: {
-            selected:'1'
-        }});
-   //window.location.assign("/chat");
+    const selected = document.getElementsByClassName('selected');
+    if(selected.length === 0){
+        goToChat();
+    }
+    const id = selected[0].getAttribute('id');
+    const data = {"selected" : id};
+    fetch('/gameselection', {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+    goToChat();
 });
 
+skip.addEventListener('click', () =>{
+    goToChat();
+});
+
+function goToChat(){
+    window.location.assign("/chat");
+}

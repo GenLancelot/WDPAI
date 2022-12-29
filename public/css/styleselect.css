@@ -280,11 +280,13 @@ h1{
 .settings_filesend{
     width: fit-content!important;
     margin-top: 1%!important;
+    font-size: 0.3em!important;
 }
 
 .fileinput{
     width: 40%;
     margin: auto;
+    font-size: 0.3em
 }
 
 input{
@@ -381,6 +383,7 @@ input{
     justify-content: space-around;
     justify-items: center;
     margin: 2%;
+    align-items: center;
 }
 
 .game-icon{
@@ -443,14 +446,17 @@ input{
     height: 60%;
     width: 100%;
     overflow-x:clip;
-    padding: 5%;
+    padding:1%;
     font-size: 0.5em;
     background: #fff;
     border-radius: 7px;
-    justify-content: space-between;
+    justify-content: space-around;
     box-shadow: 0 5px 3px rgb(0 0 0 / 10%);
 }
 
+.gameselect-btn>span, .rankselect-btn>span{
+    font-size: 1.3em;
+}
 .gameselect-btn i{
     transition: transform 0.3s linear;
 }
@@ -595,9 +601,12 @@ ul{
     border-radius: 5px;
     background: #f2f2f2;
 }
+
 form>.game>.add-game-button {
     grid-column: 5;
     width: 100%;
+    height: 60%;
+    padding: 1%;
 }
 
 .selectableobjects{
