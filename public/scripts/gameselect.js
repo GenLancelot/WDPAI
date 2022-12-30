@@ -43,9 +43,11 @@ class GameRank{
         this.rankoptions.innerHTML = "";
         this.ranks.forEach(rank => {
             let isSelected = rank === selectedRank ? "selected" : "";
-            //TODO - fix onclick
-            let li = `<li onclick="updateRankName(this)" class="${isSelected}">${rank}</li>`;
-            this.rankoptions.insertAdjacentHTML("beforeend", li);
+            let li = document.createElement('li');
+            li.setAttribute('class', `${isSelected}`);
+            li.innerHTML = `${rank}`;
+            li.addEventListener("click", () => this.updateRankName(li));
+            this.rankoptions.appendChild(li);
         });
     }
 
