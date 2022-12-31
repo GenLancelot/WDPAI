@@ -17,4 +17,6 @@ Routing::post('settings_edit', 'SettingsController');
 Routing::post('gameselection', 'SecurityController');
 Routing::post('getusergames', 'SecurityController');
 Routing::post('getnotusergames', 'SecurityController');
+Routing::post('addNewUserGame', 'SecurityController');
+Routing::post('retrieveNewUserData', 'SecurityController');
 Routing::run($path);

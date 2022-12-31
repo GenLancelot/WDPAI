@@ -127,4 +127,39 @@ class SecurityController extends AppController
         }
     }
 
+    public function addNewUserGame(){
+        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+        if ($contentType === "application/json") {
+            $content = trim(file_get_contents("php://input"));
+            header('Content-type: application/json');
+
+            $email = 'test@test.pl';
+            $userRepository = new UserRepository();
+            $user = $userRepository->getUser($email);
+            $decoded = json_decode($content, true);
+            $gamename = $decoded['gamename'];
+            if ($gamename == 'Select Game') {
+                http_response_code(200);
+                return;
+            }
+            http_response_code(200);
+            $userRepository->addNewUserGame($user, $gamename);
+        }
+    }
+
+    public function retrieveNewUserData(){
+        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+        if ($contentType === "application/json") {
+            $content = trim(file_get_contents("php://input"));
+            header('Content-type: application/json');
+
+            $email = 'test@test.pl';
+            $userRepository = new UserRepository();
+            $user = $userRepository->getUser($email);
+            $decoded = json_decode($content, true);
+            $userRepository->updateUserInfo($user, $decoded);
+
+            http_response_code(200);
+        }
+    }
 }

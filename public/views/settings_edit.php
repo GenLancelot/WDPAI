@@ -47,14 +47,16 @@
                             </div>
                         </div>
 
-                        <button class="add-game-button" type="submit">Add game</button>
+                        <button class="add-game-button" type="button">Add game</button>
                     </div>
                 </form>
-
+            </div>
+            <div>
+                <button class="submit-every-setting" type="button">Save</button>
             </div>
         </div>
     </div>
-    <script src="public/scripts/gameselect.js"></script>
+    <script src="public/scripts/gamesettings.js"></script>
 </div>
 </body>
 

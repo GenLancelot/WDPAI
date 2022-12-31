@@ -59,6 +59,13 @@ class GameRank{
     }
 }
 
+class Game {
+    constructor(game, gamerank) {
+        this.game = game;
+        this.gamerank = gamerank;
+    }
+}
+
 const wrapper = document.querySelector(".gameselect-wrapper"),
     selectBtn = wrapper.querySelector(".gameselect-btn"),
     searchInp = wrapper.querySelector(".gameinput"),
@@ -66,8 +73,52 @@ const wrapper = document.querySelector(".gameselect-wrapper"),
 
 const gamesContainer = document.querySelector('.player-games');
 
+const gameAddBtn = document.querySelector('.add-game-button');
+gameAddBtn.addEventListener('click', () => addNewUserGame());
+
+const saveAllBtn = document.querySelector('.submit-every-setting');
+saveAllBtn.addEventListener('click', () => saveAllInfo());
+
+function saveAllInfo(){
+    const newDesciption = document.querySelector('.player-description').querySelector('textarea').value;
+    //gamesAndRanks = [];
+    var json = '{\n';
+    games.forEach(currentGame =>{
+       const name = currentGame.game.name;
+       const rank = currentGame.gamerank.rankselectBtn.querySelector('span.current-rank-state').innerHTML;
+       //gamesAndRanks.push({[name] : rank});
+        json += '\"' + name + '\"' + ":" + '\"' + rank +'\"' + ',\n';
+    });
+    //const data = gamesAndRanks.concat({"description" : newDesciption});
+    json += '\"description\"' + ":" + '\"' + newDesciption + '\"' + '\n';
+    json += '}';
+    const data = JSON.parse(json);
+
+    fetch('/retrieveNewUserData',{
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }).then( (response) => {location.reload();});
+}
+
+function addNewUserGame(){
+    const gamename = selectBtn.querySelector('span').innerHTML;
+
+    const data ={'gamename' : gamename};
+    fetch('/addNewUserGame',{
+        method: "POST",
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }).then( () => {location.reload();});
+}
+
 let notUserGames = [];
 let UserGames = [];
+let games = [];
 
 const data = {search: " "};
 fetch("/getnotusergames", {
@@ -79,10 +130,15 @@ fetch("/getnotusergames", {
 }).then(function (response) {
     return response.json();
 }).then(function (fetchedGames) {
-    fetchedGames.forEach(game => {
-        notUserGames.push(game.name);
-    });
-    addGame();
+    if(fetchedGames !== null){
+        fetchedGames.forEach(game => {
+            notUserGames.push(game.name);
+        });
+        addGame();
+    }
+    else{
+        wrapper.parentElement.parentElement.remove();
+    }
 });
 
 fetch("/getusergames", {
@@ -118,6 +174,7 @@ function createGame(game, number){
     gamesContainer.appendChild(clone);
     const thisGameRank = new GameRank(number, game.name);
     thisGameRank.addRank();
+    games.push(new Game(game, thisGameRank));
 }
 
 function addGame(selectedGame) {

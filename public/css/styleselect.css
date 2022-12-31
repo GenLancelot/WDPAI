@@ -427,6 +427,13 @@ input{
     filter: invert(42%) sepia(93%) saturate(1352%) hue-rotate(132deg) brightness(119%) contrast(119%);
 }
 
+div:has(>.submit-every-setting) {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .gameselect-wrapper, .rankselect-wrapper{
     width: 35vw;
