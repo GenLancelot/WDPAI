@@ -171,12 +171,7 @@ class UserRepository extends Repository
         ]);
     }
 
-    public function updateGameInfo(User $user, string $gamename, string $rank){
-        $udiID = $this->getUserDetailsID($user);
-        if($udiID == null){
-            return null;
-        }
-
+    public function updateGameInfo(int $userDetailsID, string $gamename, string $rank){
         $gameID = $this->getGameID($gamename);
         if($gameID == null){
             return null;
@@ -192,19 +187,59 @@ class UserRepository extends Repository
         $stmt->execute([
             $rankID['ID_rank'],
             $gameID['ID_game'],
-            $udiID['idud']
+            $userDetailsID
         ]);
     }
 
     public function updateUserInfo(User $user, array $decoded){
         $userGames = $this->getUserGames($user);
+        $udiID = $this->getUserDetailsID($user);
+        if($udiID == null){
+            return null;
+        }
+
         foreach ($userGames as $game){
             if($game['gamerank'] == $decoded[$game['name']]){
                 continue;
             }
 
-            $this->updateGameInfo($user, $game['name'], $decoded[$game['name']]);
+            $this->updateGameInfo($udiID['idud'], $game['name'], $decoded[$game['name']]);
         }
+
+        $stmt = $this->database->connect()->prepare('
+            UPDATE public."user_details" SET description = ? WHERE "ID_user_details" = ?');
+        $stmt->execute([
+            $decoded['description'],
+            $udiID['idud']
+        ]);
     }
 
+    public function updateUserBackground(User $user, string $filename){
+        $udiID = $this->getUserDetailsID($user);
+        if($udiID == null){
+            return null;
+        }
+
+        $stmt = $this->database->connect()->prepare('
+            UPDATE public."user_details" SET "background_path" = ? WHERE "ID_user_details" = ?');
+        $stmt->execute([
+            $filename,
+            $udiID['idud']
+        ]);
+    }
+
+    public function updateUserIcon(User $user, string $filename){
+        $udiID = $this->getUserDetailsID($user);
+        if($udiID == null){
+            return null;
+        }
+
+        $stmt = $this->database->connect()->prepare('
+            UPDATE public."user_details" SET "icon_path" = ? WHERE "ID_user_details" = ?');
+        $stmt->execute([
+            $filename,
+            $udiID['idud']
+        ]);
+
+    }
 }

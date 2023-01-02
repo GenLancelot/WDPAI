@@ -18,14 +18,14 @@
         </div>
 
         <div class="profile-info">
-            <form class="settingseditform" action="settings" method="POST" ENCTYPE="multipart/form-data">
+            <form class="settingseditform" action="settings_file_edit" method="POST" ENCTYPE="multipart/form-data">
                 <div class="settings_fileinput">
                     <div class="settings_filetext">New background:</div>
-                    <input class= "fileinput" type="file" name="background-file">
+                    <input class= "fileinput" type="file" name="background-file" id="background-file">
                 </div>
                 <div class="settings_fileinput">
                     <div class="settings_filetext">New icon:      </div>
-                    <input class="fileinput"type="file" name="icon-file">
+                    <input class="fileinput"type="file" name="icon-file" id="icon-file">
                 </div>
                 <button class="settings_filesend" type="submit">Send background files</button>
             </form>

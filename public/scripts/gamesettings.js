@@ -81,18 +81,27 @@ saveAllBtn.addEventListener('click', () => saveAllInfo());
 
 function saveAllInfo(){
     const newDesciption = document.querySelector('.player-description').querySelector('textarea').value;
+
+    const newIcon = document.getElementById('icon-file').files[0];
+    const newBackground = document.getElementById('background-file').files[0];
+
     //gamesAndRanks = [];
-    var json = '{\n';
+   var json = '{\n';
     games.forEach(currentGame =>{
        const name = currentGame.game.name;
        const rank = currentGame.gamerank.rankselectBtn.querySelector('span.current-rank-state').innerHTML;
-       //gamesAndRanks.push({[name] : rank});
         json += '\"' + name + '\"' + ":" + '\"' + rank +'\"' + ',\n';
     });
-    //const data = gamesAndRanks.concat({"description" : newDesciption});
     json += '\"description\"' + ":" + '\"' + newDesciption + '\"' + '\n';
     json += '}';
     const data = JSON.parse(json);
+    const fileData = new FormData();
+    if (newIcon !== undefined){
+        fileData.append('icon-file', newIcon);
+    }
+    if(newBackground !== undefined){
+        fileData.append('background-file', newBackground);
+    }
 
     fetch('/retrieveNewUserData',{
         method: "POST",
@@ -100,7 +109,16 @@ function saveAllInfo(){
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
-    }).then( (response) => {location.reload();});
+    }).then( (response) => {
+        location.reload();
+    });
+
+    fetch('/settings_file_edit',{
+        method: "POST",
+        body: fileData
+    }).then( (response) => {
+        location.reload();
+    });
 }
 
 function addNewUserGame(){
