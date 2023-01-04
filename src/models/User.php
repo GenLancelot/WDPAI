@@ -4,12 +4,14 @@ class User
 {
     private $email;
     private $password;
+    private $description;
 
 
-    public function __construct(string $email, string $password)
+    public function __construct(string $email, string $password, string $description)
     {
         $this->email = $email;
         $this->password = $password;
+        $this->description = $description;
     }
 
     public function getEmail(): string
@@ -32,4 +34,13 @@ class User
         $this->password = $password;
     }
 
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description)
+    {
+        $this->description = $description;
+    }
 }

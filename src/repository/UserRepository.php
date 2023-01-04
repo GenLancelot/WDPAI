@@ -8,7 +8,10 @@ class UserRepository extends Repository
     public function getUser(string $email)
     {
         $stat = $this->database->connect()->prepare('
-            SELECT * FROM public."users" u WHERE u.email  = :email;
+            SELECT u."email" email, u."password" password, ud."description" description FROM public."users" u 
+                     JOIN public."user_details" ud
+                     ON u."ID_user" = ud."ID_user"
+                     WHERE u.email  = :email;
         ');
         $stat->bindParam('email', $email, PDO::PARAM_STR);
         $stat->execute();
@@ -21,7 +24,8 @@ class UserRepository extends Repository
 
         return new User(
             $user['email'],
-            $user['password']
+            $user['password'],
+            $user['description']
         );
     }
 
@@ -62,7 +66,7 @@ class UserRepository extends Repository
 
     public function getUserGames(User $user){
         $stat = $this->database->connect()->prepare('
-            SELECT g."name", g."filename", gr."name" gamerank FROM public."users" u FULL JOIN  
+            SELECT g."name", g."filename", gr."name" gamerank, gr."filename" gamerankfilename FROM public."users" u FULL JOIN  
                 public."user_details" ud ON u."ID_user" = ud."ID_user"
                 FULL JOIN  public."user_game_info" ugi ON ud."ID_user_details" = ugi."ID_user_details"
                 FULL JOIN  public.games g ON ugi."ID_game" = g."ID_game"
