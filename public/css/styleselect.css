@@ -93,6 +93,13 @@ button:not(.button-nostyle){
     background-color: #494752;
     height: 25vh;
     width: 25vh;
+    border-radius: 50%;
+    margin: auto;
+    background-size: cover;
+    background-position-x: center;
+    background-position-y: center;
+    border: solid black 1px;
+    box-shadow: 8px 9px 14px 5px rgb(0 0 0 / 30%);
 }
 
 .player-info>p{
@@ -312,12 +319,6 @@ input{
 }
 .profile-view{
     background-image: url('../photos/default_icon.jpg');
-    border-radius: 50%;
-    background-size: cover;
-    background-position-x: center;
-    background-position-y: center;
-    border: solid black 1px;
-    box-shadow: 8px 9px 14px 5px rgb(0 0 0 / 30%);
 }
 .settings{
     justify-content: flex-start;

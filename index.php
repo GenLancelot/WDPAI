@@ -12,6 +12,8 @@ Routing::get('settings', 'SettingsController');
 
 Routing::post('search', 'GamesController');
 Routing::post('getgameranks', 'GamesController');
+Routing::post('main', 'SecurityController');
+Routing::post('getnextuser', 'SecurityController');
 Routing::post('login', 'SecurityController');
 Routing::post('registration', 'SecurityController');
 Routing::post('gameselection', 'SecurityController');

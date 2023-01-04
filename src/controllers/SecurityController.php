@@ -162,4 +162,28 @@ class SecurityController extends AppController
             http_response_code(200);
         }
     }
+
+    public function main(){
+        $this->render('main');
+    }
+
+    public function getnextuser(){
+        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+        if ($contentType === "application/json") {
+            $content = trim(file_get_contents("php://input"));
+            header('Content-type: application/json');
+
+            $email = 'test@test.pl';
+            $userRepository = new UserRepository();
+            $user = $userRepository->getUser($email);
+            $decoded = json_decode($content, true);
+            if($decoded != null){
+                $userRepository->addFriendshipStatus($user, $decoded['action'], $decoded['email']);
+            }
+            $nextUser = $userRepository->getNextUserToShow($user);
+
+            echo json_encode($nextUser);
+            http_response_code(200);
+        }
+    }
 }
