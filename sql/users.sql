@@ -17,3 +17,4 @@ alter table users
 INSERT INTO public.users ("ID_user", email, password, enable, created_at, "ID_user_type") VALUES (1, 'test@test.pl', 'test123', true, '2022-12-07 19:20:11.000000', 1);
 INSERT INTO public.users ("ID_user", email, password, enable, created_at, "ID_user_type") VALUES (2, 'nowy@test.pl', 'nowehaslo', true, '2022-12-07 19:20:09.000000', 1);
 INSERT INTO public.users ("ID_user", email, password, enable, created_at, "ID_user_type") VALUES (3, 'admin@teamfinder.io', 'admin', true, '2022-12-07 19:20:06.000000', 2);
+INSERT INTO public.users ("ID_user", email, password, enable, created_at, "ID_user_type") VALUES (4, 'testrejestarcji@test.pl', 'test123', true, '2022-12-15 21:42:16.832203', 1);

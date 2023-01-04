@@ -324,4 +324,23 @@ class UserRepository extends Repository
 
         return $userToShow;
     }
+
+    public function getUserImages(User $user){
+        $userID = $this->getUserId($user->getEmail());
+        if($userID == null){
+            return null;
+        }
+
+        $stmt = $this->database->connect()->prepare('
+            SELECT ud."icon_path" icon, ud."background_path" background FROM public."user_details" ud WHERE ud."ID_user" =:userID');
+
+        $stmt->bindParam('userID', $userID, PDO::PARAM_INT);
+        $stmt->execute();
+        $files = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($files == false){
+            return null;
+        }
+
+        return $files;
+    }
 }

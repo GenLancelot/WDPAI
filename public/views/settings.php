@@ -12,7 +12,7 @@
                 <div class="edit">
                     <img src="../icons/edit.svg"./>
                 </div>
-                <div class="player-icon profile-view">
+                <div class="player-icon" style='background-image: url("public/photos/<?php echo $icon?>")'>
 
                 </div>
                 <div class="player-nickname">

@@ -17,3 +17,5 @@ create table friendships
 alter table friendships
     owner to postgres;
 
+INSERT INTO public.friendships ("ID_friendship", "ID_user1", "ID_user2", "ID_status") VALUES (8, 1, 2, 3);
+INSERT INTO public.friendships ("ID_friendship", "ID_user1", "ID_user2", "ID_status") VALUES (9, 1, 4, 2);

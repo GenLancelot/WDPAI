@@ -20,8 +20,8 @@ class DefaultController extends AppController{
         $email = 'test@test.pl';
         $userRepository = new UserRepository();
         $user = $userRepository->getUser($email);
-
+        $images = $userRepository->getUserImages($user);
         $games = $userRepository->getUserGames($user);
-        $this->render('profile', ['user' => $user, 'games' => $games]);
+        $this->render('profile', ['user' => $user, 'games' => $games, 'icon'=>$images['icon']]);
     }
 }

@@ -9,7 +9,7 @@
 
     <div class="profile-container">
         <div class="player-wall">
-            <div class="player-icon profile-view">
+            <div class="player-icon" style='background-image: url("public/photos/<?php echo $icon?>")'>
 
             </div>
             <div class="player-nickname">
@@ -28,7 +28,7 @@
                             <img class="game-img" src="public/icons/games/<?php echo $game['filename']?>"/>
                         </div>
                         <div class="game-rank-symbol">
-                            <img class="game-img"src="public/icons/ranks/<?php echo $game['gamerankfilename']?>"/>
+                            <img class="game-img" src="public/icons/ranks/<?php echo $game['gamerankfilename']?>"/>
                         </div>
                         <div class="game-rank-text">
                             <?php echo $game['gamerank']?>

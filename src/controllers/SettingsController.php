@@ -12,7 +12,11 @@ class SettingsController extends AppController
 
     public function settings_edit()
     {
-        $this->render('settings_edit', ['messages' => $this->messages]);
+        $email = 'test@test.pl';
+        $userRepository = new UserRepository();
+        $user = $userRepository->getUser($email);
+        $images = $userRepository->getUserImages($user);
+        $this->render('settings_edit', ['messages' => $this->messages, 'icon' => $images['icon']]);
     }
 
     public function settings_file_edit()
@@ -57,8 +61,8 @@ class SettingsController extends AppController
         $email = 'test@test.pl';
         $userRepository = new UserRepository();
         $user = $userRepository->getUser($email);
-
+        $images = $userRepository->getUserImages($user);
         $games = $userRepository->getUserGames($user);
-        $this->render('settings', ['user' => $user, 'games' => $games]);
+        $this->render('settings', ['user' => $user, 'games' => $games, 'icon' => $images['icon']]);
     }
 }
