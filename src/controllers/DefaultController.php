@@ -12,4 +12,16 @@ class DefaultController extends AppController{
         $this->render('login' , ['message' => "hello world"]);
    }
 
+    public function profile(){
+        if(isset($_COOKIE['user'])) {
+            $url = "http://$_SERVER[HTTP_HOST]";
+            header("Location: ${url}/chat");
+        }
+        $email = 'test@test.pl';
+        $userRepository = new UserRepository();
+        $user = $userRepository->getUser($email);
+
+        $games = $userRepository->getUserGames($user);
+        $this->render('profile', ['user' => $user, 'games' => $games]);
+    }
 }

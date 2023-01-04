@@ -16,7 +16,7 @@
 
                 </div>
                 <div class="player-nickname">
-                    Unnamed Player
+                    <?php echo $user->getEmail()?>
                 </div>
             </div>
 
