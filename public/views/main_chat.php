@@ -12,8 +12,9 @@
 }?>
     <div class="container">
         <div class="headline">
-            <a>Find Player</a>
-            <a class="active">Friends</a>
+            <a onclick="window.location.assign('/main')">Find Player</a>
+            <a class="currentactive">Friends</a>
+            <img src="public/icons/user.svg" onclick="window.location.assign('/settings')" class="usericon"/>
         </div>
         <div class="chat">
            <div class="messages">

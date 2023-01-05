@@ -9,8 +9,11 @@
 
         <div class="profile-container">
             <div class="player-wall">
+                <div class="back">
+                    <img src="public/icons/back.svg" onclick="window.history.back()"/>
+                </div>
                 <div class="edit">
-                    <img src="../icons/edit.svg" onclick="window.location.assign('/settings_edit')"/>
+                    <img src="public/icons/edit.svg" onclick="window.location.assign('/settings_edit')"/>
                 </div>
                 <div class="player-icon">
                     <script>

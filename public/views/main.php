@@ -7,8 +7,9 @@
 <body>
     <div class="container">
         <div class="headline">
-            <a class="active">Find Player</a>
-            <a>Friends</a>
+            <a class="currentactive">Find Player</a>
+            <a onclick="window.location.assign('/chat')">Friends</a>
+            <img src="public/icons/user.svg" onclick="window.location.assign('/settings')" class="usericon"/>
         </div>
         <div class="info-container">
             <div>

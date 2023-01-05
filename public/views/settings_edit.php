@@ -9,6 +9,9 @@
 
     <div class="profile-container">
         <div class="player-wall">
+            <div class="back">
+                <img src="public/icons/back.svg" onclick="window.history.back()"/>
+            </div>
             <div class="player-icon">
                 <script>
                     const url = `<?php echo $icon;?>`;

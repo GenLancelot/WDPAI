@@ -651,6 +651,29 @@ img.gamebox-icon {
 .gamebox.selected{
     background: #8e8fa3;
 }
+.back{
+    width: 100%;
+    height: 100%;
+}
+
+.back>img{
+    height: 0.6em;
+    margin-left: 1vw;
+    margin-top: 1vw;
+    mix-blend-mode: difference;
+    filter: invert(42%) sepia(93%) saturate(1352%) hue-rotate(132deg) brightness(119%) contrast(119%);
+}
+
+.currentactive{
+    color:#FAB38C;
+}
+
+.usericon{
+    height: 5vw;
+    position: absolute;
+    top: 1%;
+    right: 1%;
+}
 
 @media only screen and (max-device-width: 1400px) {
     .gamebox-name{
@@ -693,14 +716,17 @@ img.gamebox-icon {
     .player-nickname {
     font-size: 1em;
     }
-    .edit>img{
+    .edit>img, .back>img{
         height: 1.3em;
+    }
+    .usericon{
+        height: 7vw;
     }
 }
 
 @media only screen and (max-device-width: 400px)
 {
-    .edit>img{
+    .edit>img, .back>img{
         height: 1.8em;
     }
 }
