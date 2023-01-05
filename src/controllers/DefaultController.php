@@ -22,6 +22,6 @@ class DefaultController extends AppController{
         $user = $userRepository->getUser($email);
         $images = $userRepository->getUserImages($user);
         $games = $userRepository->getUserGames($user);
-        $this->render('profile', ['user' => $user, 'games' => $games, 'icon'=>$images['icon']]);
+        $this->render('profile', ['user' => $user, 'games' => $games, 'icon'=>$images['icon'], 'bg' => $images['background']]);
     }
 }

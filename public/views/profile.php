@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
     <link rel="stylesheet"  type="text/css" href="/public/css/styleselect.css">
-
+    <script src="public/scripts/changeUrlBg.js"></script>
     <title>Profile</title>
 </head>
 <body>
@@ -9,8 +9,13 @@
 
     <div class="profile-container">
         <div class="player-wall">
-            <div class="player-icon" style='background-image: url("public/photos/<?php echo $icon?>")'>
-
+            <div class="player-icon">
+                <script>
+                    const url = `<?php echo $icon;?>`;
+                    const urlBg = `<?php echo $bg;?>`;
+                    changeIcon(url);
+                    changeBg(urlBg);
+                </script>
             </div>
             <div class="player-nickname">
                 <?php echo $user->getEmail()?>

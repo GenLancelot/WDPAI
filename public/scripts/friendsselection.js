@@ -46,15 +46,21 @@ function getNextUser(approved){
         loadUser(nextUser);
     });
 }
+var css = document.styleSheets[0];
+
+function changeIcon(newUrl) {
+    myRule = css.cssRules[11];
+    myRule.style.backgroundImage = newUrl;
+}
 
 function loadUser(user){
     if(user === null){
         playerInfo.innerHTML = 'No more users to find!';
         playerName.innerHTML = '';
-        playerIcon.style.backgroundImage = 'url(public/photos/404.png)';
+        changeIcon('url(../../public/photos/404.png)');
         return;
     }
     playerInfo.innerHTML = user['description'];
-    playerIcon.style.backgroundImage = `url(public/photos/${user['icon_path']})`;
+    changeIcon(`url(../../public/photos/${user['icon_path']})`);
     playerName.innerHTML = user['email'];
 }

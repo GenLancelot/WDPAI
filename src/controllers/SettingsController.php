@@ -16,7 +16,7 @@ class SettingsController extends AppController
         $userRepository = new UserRepository();
         $user = $userRepository->getUser($email);
         $images = $userRepository->getUserImages($user);
-        $this->render('settings_edit', ['messages' => $this->messages, 'icon' => $images['icon']]);
+        $this->render('settings_edit', ['messages' => $this->messages, 'icon' => $images['icon'], 'bg' => $images['background']]);
     }
 
     public function settings_file_edit()
@@ -36,7 +36,8 @@ class SettingsController extends AppController
             $userRepository->updateUserIcon($user, $_FILES['icon-file']['name']);
         }
 
-        $this->render('settings_edit', ['messages' => $this->messages]);
+        $url = "http://$_SERVER[HTTP_HOST]";
+        header("Location: ${url}/settings_edit");
     }
 
     private function validate(array $file): bool
@@ -63,6 +64,6 @@ class SettingsController extends AppController
         $user = $userRepository->getUser($email);
         $images = $userRepository->getUserImages($user);
         $games = $userRepository->getUserGames($user);
-        $this->render('settings', ['user' => $user, 'games' => $games, 'icon' => $images['icon']]);
+        $this->render('settings', ['user' => $user, 'games' => $games, 'icon' => $images['icon'], 'bg' => $images['background']]);
     }
 }
