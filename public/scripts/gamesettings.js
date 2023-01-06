@@ -86,7 +86,7 @@ function saveAllInfo(){
     const newBackground = document.getElementById('background-file').files[0];
 
     //gamesAndRanks = [];
-   var json = '{\n';
+    let json = '{\n';
     games.forEach(currentGame =>{
        const name = currentGame.game.name;
        const rank = currentGame.gamerank.rankselectBtn.querySelector('span.current-rank-state').innerHTML;

@@ -8,32 +8,23 @@ const playerName = document.querySelector('.player-nickname');
 acceptBtn.addEventListener('click', () => getNextUser(true));
 declineBtn.addEventListener('click', () => getNextUser(false));
 
-fetch('/getnextuser',{
-    method: "POST",
-    headers: {
-        'Content-Type': 'application/json'
-    }
-}).then( (response) => {
-    return response.json();
-}).then(nextUser => {
-    loadUser(nextUser);
-});
+getNextUser('');
 
 function getNextUser(approved){
-    let data;
-    if(approved === true){
-        data = {
-            'action' : true,
+    const data = {
+            'action' : approved,
             'email' : playerName.innerHTML
         };
-    }
-    else{
-        data = {
-            'action' : false,
-            'email' : playerName.innerHTML
-        };
-    }
+    getNextUser(data);
+}
+const  css = document.styleSheets[0];
 
+function changeIcon(newUrl) {
+    myRule = css.cssRules[11];
+    myRule.style.backgroundImage = newUrl;
+}
+
+function getNextUser(data){
     fetch('/getnextuser',{
         method: "POST",
         headers: {
@@ -45,12 +36,6 @@ function getNextUser(approved){
     }).then(nextUser => {
         loadUser(nextUser);
     });
-}
-var css = document.styleSheets[0];
-
-function changeIcon(newUrl) {
-    myRule = css.cssRules[11];
-    myRule.style.backgroundImage = newUrl;
 }
 
 function loadUser(user){

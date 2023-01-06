@@ -7,12 +7,12 @@ $path = parse_url($path, PHP_URL_PATH);
 
 Routing::get('index', 'DefaultController');
 Routing::get('profile', 'DefaultController');
-Routing::get('chat', 'SecurityController');
+Routing::get('main', 'DefaultController');
+Routing::get('chat', 'DefaultController');
 Routing::get('settings', 'SettingsController');
 
 Routing::post('search', 'GamesController');
 Routing::post('getgameranks', 'GamesController');
-Routing::post('main', 'SecurityController');
 Routing::post('getnextuser', 'SecurityController');
 Routing::post('login', 'SecurityController');
 Routing::post('logout', 'SecurityController');

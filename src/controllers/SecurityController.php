@@ -11,8 +11,7 @@ class SecurityController extends AppController
     {
 
         if(isset($_COOKIE['user'])) {
-            $url = "http://$_SERVER[HTTP_HOST]";
-            header("Location: ${url}/chat");
+            $this->redirect('/main');
         }
 
         if (!$this->isPost()){
@@ -53,8 +52,7 @@ class SecurityController extends AppController
         }
 
         if(isset($_COOKIE['user'])) {
-            $url = "http://$_SERVER[HTTP_HOST]";
-            header("Location: ${url}/chat");
+            $this->redirect('/main');
         }
 
         $email = $_POST["email"];
@@ -67,19 +65,13 @@ class SecurityController extends AppController
         $cookie_value = $email;
         setcookie($user_cookie, $cookie_value, time() + (60 * 30), "/");
 
-        $url = "http://$_SERVER[HTTP_HOST]";
-        header("Location: {$url}/settings_edit");
+        $this->redirect('/settings_edit');
     }
 
     public function logout()
     {
         setcookie('user', $_COOKIE['user'], time() - 10, "/");
-        $url = "http://$_SERVER[HTTP_HOST]";
-        header("Location: {$url}/login");
-    }
-
-    public function chat(){
-        $this->render('main_chat');
+        $this->redirect('/login');
     }
 
     public function gameselection(){
@@ -90,6 +82,7 @@ class SecurityController extends AppController
             header('Content-type: application/json');
 
             $email = 'test@test.pl';
+            $this->ensureUserRepoIsNotNull();
             $user = $this->userRepository->getUser($email);
             $this->userRepository->addUserPrioritizedGame($user, $decoded['selected']);
 
@@ -104,6 +97,7 @@ class SecurityController extends AppController
             header('Content-type: application/json');
 
             $email = $_COOKIE['user'];
+            $this->ensureUserRepoIsNotNull();
             $user = $this->userRepository->getUser($email);
 
             http_response_code(200);
@@ -118,6 +112,7 @@ class SecurityController extends AppController
             header('Content-type: application/json');
 
             $email = $_COOKIE['user'];
+            $this->ensureUserRepoIsNotNull();
             $user = $this->userRepository->getUser($email);
 
             http_response_code(200);
@@ -132,6 +127,7 @@ class SecurityController extends AppController
             header('Content-type: application/json');
 
             $email = $_COOKIE['user'];
+            $this->ensureUserRepoIsNotNull();
             $user = $this->userRepository->getUser($email);
             $decoded = json_decode($content, true);
             $gamename = $decoded['gamename'];
@@ -151,16 +147,13 @@ class SecurityController extends AppController
             header('Content-type: application/json');
 
             $email = $_COOKIE['user'];
+            $this->ensureUserRepoIsNotNull();
             $user = $this->userRepository->getUser($email);
             $decoded = json_decode($content, true);
             $this->userRepository->updateUserInfo($user, $decoded);
 
             http_response_code(200);
         }
-    }
-
-    public function main(){
-        $this->render('main');
     }
 
     public function getnextuser(){
@@ -170,9 +163,7 @@ class SecurityController extends AppController
             header('Content-type: application/json');
 
             $email = $_COOKIE['user'];
-            if($this->userRepository == null){
-                $this->userRepository = new UserRepository();
-            }
+            $this->ensureUserRepoIsNotNull();
             $user = $this->userRepository->getUser($email);
             $decoded = json_decode($content, true);
             if($decoded != null){
@@ -182,6 +173,12 @@ class SecurityController extends AppController
 
             echo json_encode($nextUser);
             http_response_code(200);
+        }
+    }
+
+    private function ensureUserRepoIsNotNull(){
+        if(!$this->userRepository){
+            $this->userRepository = new UserRepository();
         }
     }
 }

@@ -26,7 +26,6 @@ search.addEventListener("keyup", function (event) {
 
 function loadGames(games){
     games.forEach(game => {
-        console.log(game);
         createGame(game);
     })
 }

@@ -35,9 +35,7 @@ class SettingsController extends AppController
             move_uploaded_file($_FILES['icon-file']['tmp_name'], dirname(__DIR__).self::UPLOAD_DIR.$_FILES['icon-file']['name']);
             $userRepository->updateUserIcon($user, $_FILES['icon-file']['name']);
         }
-
-        $url = "http://$_SERVER[HTTP_HOST]";
-        header("Location: ${url}/settings_edit");
+        $this->redirect('/settings_edit');
     }
 
     private function validate(array $file): bool

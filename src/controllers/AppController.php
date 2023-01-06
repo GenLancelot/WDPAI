@@ -20,8 +20,7 @@ class AppController {
 
     protected function render(string $template = null, array $variables = []){
         if (!($template === 'registartion' || $template === 'login') && !isset($_COOKIE["user"])){
-            $url = "http://$_SERVER[HTTP_HOST]";
-            header("Location: {$url}/login");
+            $this->redirect('/login');
             return;
         }
         $templatePath = 'public/views/'.$template.'.php';
@@ -35,5 +34,10 @@ class AppController {
             $output = ob_get_clean();
         }
         print $output;
+    }
+
+    protected function redirect(string $destination){
+        $url = "http://$_SERVER[HTTP_HOST]";
+        header("Location: {$url}/{$destination}");
     }
 }
