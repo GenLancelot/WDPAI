@@ -41,7 +41,8 @@ class SecurityController extends AppController
         $cookie_value = $email;
         setcookie($user_cookie, $cookie_value, time() + (60 * 30), "/");
 
-        Routing::run('games');
+        $url = "http://$_SERVER[HTTP_HOST]";
+        header("Location: {$url}/games");
     }
 
     public function registration()
@@ -74,7 +75,7 @@ class SecurityController extends AppController
     {
         setcookie('user', $_COOKIE['user'], time() - 10, "/");
         $url = "http://$_SERVER[HTTP_HOST]";
-        header("Location: {$url}/index");
+        header("Location: {$url}/login");
     }
 
     public function chat(){

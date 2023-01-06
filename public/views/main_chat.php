@@ -12,6 +12,7 @@
 }?>
     <div class="container">
         <div class="headline">
+            <img src="public/icons/logout.svg" onclick="window.location.assign('/logout')" class="logouticon"/>
             <a onclick="window.location.assign('/main')">Find Player</a>
             <a class="currentactive">Friends</a>
             <img src="public/icons/user.svg" onclick="window.location.assign('/settings')" class="usericon"/>

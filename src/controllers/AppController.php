@@ -19,6 +19,11 @@ class AppController {
     }
 
     protected function render(string $template = null, array $variables = []){
+        if (!($template === 'registartion' || $template === 'login') && !isset($_COOKIE["user"])){
+            $url = "http://$_SERVER[HTTP_HOST]";
+            header("Location: {$url}/login");
+            return;
+        }
         $templatePath = 'public/views/'.$template.'.php';
         $output = "File not found! $templatePath";
 

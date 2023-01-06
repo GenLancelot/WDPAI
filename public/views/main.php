@@ -7,6 +7,7 @@
 <body>
     <div class="container">
         <div class="headline">
+            <img src="public/icons/logout.svg" onclick="window.location.assign('/logout')" class="logouticon"/>
             <a class="currentactive">Find Player</a>
             <a onclick="window.location.assign('/chat')">Friends</a>
             <img src="public/icons/user.svg" onclick="window.location.assign('/settings')" class="usericon"/>

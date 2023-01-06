@@ -6,7 +6,6 @@
 </head>
 <body>
 <div class="container settings">
-
     <div class="profile-container">
         <div class="player-wall">
             <div class="back">

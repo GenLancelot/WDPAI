@@ -55,10 +55,6 @@ class SettingsController extends AppController
     }
 
     public function settings(){
-        if(isset($_COOKIE['user'])) {
-            $url = "http://$_SERVER[HTTP_HOST]";
-            header("Location: ${url}/chat");
-        }
         $email = 'test@test.pl';
         $userRepository = new UserRepository();
         $user = $userRepository->getUser($email);

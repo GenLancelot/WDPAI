@@ -1,5 +1,5 @@
 *{
-    font-size: 50px;
+    font-size: 60px;
     box-sizing: border-box;
     font-family: 'Gotu';
     font-style: normal;
@@ -663,16 +663,30 @@ img.gamebox-icon {
     mix-blend-mode: difference;
     filter: invert(42%) sepia(93%) saturate(1352%) hue-rotate(132deg) brightness(119%) contrast(119%);
 }
+.back>img, .edit>img, .logouticon, .usericon:hover{
+    cursor: pointer;
+}
 
 .currentactive{
     color:#FAB38C;
 }
 
 .usericon{
-    height: 5vw;
+    height: 4vw;
     position: absolute;
     top: 1%;
     right: 1%;
+}
+
+.logouticon{
+    height: 4vw;
+    position: absolute;
+    top: 1%;
+    left: 1%;
+}
+
+.headline>a:hover{
+    cursor: pointer;
 }
 
 @media only screen and (max-device-width: 1400px) {
@@ -719,7 +733,7 @@ img.gamebox-icon {
     .edit>img, .back>img{
         height: 1.3em;
     }
-    .usericon{
+    .usericon, .logouticon{
         height: 7vw;
     }
 }

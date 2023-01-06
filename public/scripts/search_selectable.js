@@ -15,7 +15,7 @@ Array.from(games).forEach((game) => {
 next.addEventListener('click', () =>{
     const selected = document.getElementsByClassName('selected');
     if(selected.length === 0){
-        goToChat();
+        goToFindPlayer();
     }
     const id = selected[0].getAttribute('id');
     const data = {"selected" : id};
@@ -25,14 +25,15 @@ next.addEventListener('click', () =>{
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
+    }).then(() => {
+        goToFindPlayer();
     });
-    goToChat();
 });
 
 skip.addEventListener('click', () =>{
-    goToChat();
+    goToFindPlayer();
 });
 
-function goToChat(){
-    window.location.assign("/chat");
+function goToFindPlayer(){
+    window.location.assign("/main");
 }
