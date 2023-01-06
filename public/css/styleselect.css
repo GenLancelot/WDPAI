@@ -39,6 +39,7 @@ p{
     width: 90%;
     background-color: #e4e5ec;
     height: 75%;
+    overflow-y: scroll;
 }
 
 .buttons, .empty-space{
@@ -689,6 +690,24 @@ img.gamebox-icon {
     cursor: pointer;
 }
 
+.adminmessage{
+    font-size: 0.7em;
+    padding: 1%;
+    margin: 1%;
+}
+
+.adminform{
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    align-items: center;
+    height: 30%;
+}
+
+.adminsendbtn{
+    width: fit-content!important;
+}
+
 @media only screen and (max-device-width: 1400px) {
     .gamebox-name{
         font-size: 0.6em;
@@ -735,6 +754,23 @@ img.gamebox-icon {
     }
     .usericon, .logouticon{
         height: 7vw;
+    }
+
+    .adminmessage{
+        font-size: 1.5em;
+    }
+
+    .adminform{
+        height: 20%;
+        font-size: 1.5em;
+    }
+
+    .adminform>input{
+        margin-bottom: 1%;
+    }
+
+    .adminlogout{
+        height: 4vw;
     }
 }
 

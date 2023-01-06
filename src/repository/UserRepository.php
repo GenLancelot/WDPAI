@@ -8,8 +8,8 @@ class UserRepository extends Repository
     public function getUser(string $email)
     {
         $stat = $this->database->connect()->prepare('
-            SELECT u."email" email, u."password" password, ud."description" description FROM public."users" u 
-                     JOIN public."user_details" ud
+            SELECT u."email" email, u."password" password, ud."description" description, u."ID_user_type" idut FROM public."users" u 
+                     FULL JOIN public."user_details" ud
                      ON u."ID_user" = ud."ID_user"
                      WHERE u.email  = :email;
         ');
@@ -25,7 +25,7 @@ class UserRepository extends Repository
         return new User(
             $user['email'],
             $user['password'],
-            $user['description']
+            $user['idut'] === 1 ? $user['description'] : 'admin'
         );
     }
 
@@ -38,6 +38,25 @@ class UserRepository extends Repository
             $user->getEmail(),
             $user->getPassword()
         ]);
+    }
+
+    public function checkIfAdmin(string $email){
+        $stmt = $this->database->connect()->prepare('
+            SELECT ut."name" rolename FROM public."users" u 
+            JOIN public."user_types" ut 
+            ON ut."ID_user_type" = u."ID_user_type"
+            WHERE u."email" = :email
+        ');
+
+        $stmt->bindParam('email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if($result == false){
+            return null;
+        }
+        return $result['rolename'] === 'admin';
     }
 
     public function addUserPrioritizedGame(User $user, int $gameID){

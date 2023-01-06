@@ -23,6 +23,17 @@ class AppController {
             $this->redirect('/login');
             return;
         }
+        elseif(isset($_COOKIE["user"])){
+            $userRepository = new UserRepository();
+            if($userRepository->checkIfAdmin($_COOKIE["user"])){
+                if($template !== 'admin'){
+                    $this->redirect('/admin');
+                }
+            }
+            elseif($template === 'admin'){
+                $this->redirect('main');
+            }
+        }
         $templatePath = 'public/views/'.$template.'.php';
         $output = "File not found! $templatePath";
 

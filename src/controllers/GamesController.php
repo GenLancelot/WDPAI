@@ -6,7 +6,7 @@ require_once __DIR__ . '/../repository/GameRepository.php';
 class GamesController extends AppController
 {
     const MAX_FILE_SIZE = 2048*2048;
-    const SUPPORTED_TYPES = ['image/png', 'image/jpeg', 'image/svg'];
+    const SUPPORTED_TYPES = ['image/png', 'image/jpeg', 'image/svg', 'image/svg+xml'];
     const UPLOAD_DIRECTORY = '/../public/icons/games/';
     private $gamesRepository;
     private $message = [];
@@ -22,23 +22,6 @@ class GamesController extends AppController
     {
         $games = $this->gamesRepository->getGames();
         $this->render('gameselect', ['games' => $games]);
-    }
-
-    public function addGame(){
-        if ($this->isPost() && is_uploaded_file($_FILES['file']['tmp_name']) && $this->validate($_FILES['file'])) {
-            move_uploaded_file(
-                $_FILES['file']['tmp_name'],
-                dirname(__DIR__) . self::UPLOAD_DIRECTORY . $_FILES['file']['name']
-            );
-
-            $game = new Game($_POST['name'], $_FILES['file']['name']);
-            $this->gamesRepository->addGame($game);
-
-            return $this->render('gameselect', [
-                'messages' => $this->message,
-                'games' => $this->gamesRepository->getGames()
-            ]);
-        }
     }
 
     public function search()
@@ -67,6 +50,26 @@ class GamesController extends AppController
 
             echo json_encode( $this->gamesRepository->getGameRanks($decoded['search']));
         }
+    }
+
+    public function admin(){
+        if ($this->isPost() && is_uploaded_file($_FILES['gameicon']['tmp_name']) && $this->validate($_FILES['gameicon'])) {
+            if(!$_POST['gamename']){
+                $this->message[] = 'Provide game name.';
+            }
+            else{
+                $gamename = $_POST['gamename'];
+                $filename = $_FILES['gameicon']['name'];
+                move_uploaded_file(
+                    $_FILES['gameicon']['tmp_name'],
+                    dirname(__DIR__).self::UPLOAD_DIRECTORY.$filename
+                );
+                $this->gamesRepository->addGame($gamename, $filename);
+            }
+        }
+        return $this->render('admin', [
+            'messages' => $this->message,
+        ]);
     }
 
     private function validate(array $file): bool

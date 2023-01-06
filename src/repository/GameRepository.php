@@ -41,16 +41,15 @@ class GameRepository extends Repository
         );
     }
 
-    public function addGame(Game $game){
+    public function addGame(string $gamename, string $filename){
         $stat = $this->database->connect()->prepare('
             INSERT INTO public.games(name, filename) VALUES (?,?)
         ');
 
 
         $stat->execute([
-            $game->getId(),
-            $game->getName(),
-            $game->getFilename()
+            $gamename,
+            $filename
         ]);
     }
 

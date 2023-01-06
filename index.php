@@ -11,8 +11,10 @@ Routing::get('main', 'DefaultController');
 Routing::get('chat', 'DefaultController');
 Routing::get('settings', 'SettingsController');
 
+Routing::post('admin', 'GamesController');
 Routing::post('search', 'GamesController');
 Routing::post('getgameranks', 'GamesController');
+Routing::post('adminupload', 'GamesController');
 Routing::post('getnextuser', 'SecurityController');
 Routing::post('login', 'SecurityController');
 Routing::post('logout', 'SecurityController');
