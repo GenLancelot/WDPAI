@@ -14,7 +14,7 @@ create table users
 alter table users
     owner to postgres;
 
-INSERT INTO public.users ("ID_user", email, password, enable, created_at, "ID_user_type") VALUES (1, 'test@test.pl', 'test123', true, '2022-12-07 19:20:11.000000', 1);
-INSERT INTO public.users ("ID_user", email, password, enable, created_at, "ID_user_type") VALUES (2, 'nowy@test.pl', 'nowehaslo', true, '2022-12-07 19:20:09.000000', 1);
-INSERT INTO public.users ("ID_user", email, password, enable, created_at, "ID_user_type") VALUES (3, 'admin@teamfinder.io', 'admin', true, '2022-12-07 19:20:06.000000', 2);
-INSERT INTO public.users ("ID_user", email, password, enable, created_at, "ID_user_type") VALUES (4, 'testrejestarcji@test.pl', 'test123', true, '2022-12-15 21:42:16.832203', 1);
+INSERT INTO public.users ("ID_user", email, password, enable, created_at, "ID_user_type") VALUES (2, 'nowy@test.pl', '$2y$10$jl2axSJcjmkGHkW.T89juuZ/EftBaMZJQG5ifusnYLlNmeozJG81e', true, '2022-12-07 19:20:09.000000', 1);
+INSERT INTO public.users ("ID_user", email, password, enable, created_at, "ID_user_type") VALUES (1, 'test@test.pl', '$2y$10$v3g2suqo9SdsQZb7Zm14Bu.on5Bkdebu0aQssu2CImVDPS5xLk9Fm', true, '2022-12-07 19:20:11.000000', 1);
+INSERT INTO public.users ("ID_user", email, password, enable, created_at, "ID_user_type") VALUES (3, 'admin@teamfinder.io', '$2y$10$BdWfsu0r7c.KlLPpD.ynsODENhgUyUxG.WHxrAKtWIhNXtA7oYBre', true, '2022-12-07 19:20:06.000000', 2);
+INSERT INTO public.users ("ID_user", email, password, enable, created_at, "ID_user_type") VALUES (4, 'testrejestarcji@test.pl', '$2y$10$Q77bHZvSkMJ9PND3UhI8H.N0VYyLbPS0PbvTO1RKQfG1ICE.H5trS', true, '2022-12-15 21:42:16.832203', 1);

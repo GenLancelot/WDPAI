@@ -33,7 +33,7 @@ class SecurityController extends AppController
             return $this->render('login', ['messages'=> ['user with this email not exits!']]);
         }
 
-        if ($user->getPassword() !== $password){
+        if (!password_verify($password, $user->getPassword())){
             return $this->render('login', ['messages'=> ['password incorrect!']]);
         }
 
@@ -57,7 +57,7 @@ class SecurityController extends AppController
         }
 
         $email = $_POST["email"];
-        $password = $_POST["password"];
+        $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
         $user = new User($email, $password);
         $userRepository = new UserRepository();
         $userRepository->addUser($user);
