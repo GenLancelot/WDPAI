@@ -12,7 +12,7 @@ class SettingsController extends AppController
 
     public function settings_edit()
     {
-        $email = 'test@test.pl';
+        $email = $_COOKIE['user'];
         $userRepository = new UserRepository();
         $user = $userRepository->getUser($email);
         $images = $userRepository->getUserImages($user);
@@ -21,7 +21,7 @@ class SettingsController extends AppController
 
     public function settings_file_edit()
     {
-        $email = 'test@test.pl';
+        $email = $_COOKIE['user'];
         $userRepository = new UserRepository();
         $user = $userRepository->getUser($email);
 
@@ -55,7 +55,7 @@ class SettingsController extends AppController
     }
 
     public function settings(){
-        $email = 'test@test.pl';
+        $email = $_COOKIE['user'];
         $userRepository = new UserRepository();
         $user = $userRepository->getUser($email);
         $images = $userRepository->getUserImages($user);

@@ -79,8 +79,8 @@ class UserRepository extends Repository
 
         $result = $stat->fetchAll(PDO::FETCH_ASSOC);
 
-        if($result == false){
-            return null;
+        if($result == false || $result[0]['name'] == ''){
+            return [];
         }
 
         return $result;
@@ -103,8 +103,8 @@ class UserRepository extends Repository
 
         $result = $stat->fetchAll(PDO::FETCH_ASSOC);
 
-        if($result == false){
-            return null;
+        if($result == false || $result[0]['name'] == ''){
+            return [];
         }
 
         return $result;

@@ -7,7 +7,8 @@ class DefaultController extends AppController{
     public function index(){
         if(isset($_COOKIE['user'])) {
             $url = "http://$_SERVER[HTTP_HOST]";
-            header("Location: ${url}/chat");
+            header("Location: ${url}/main");
+            return;
         }
         $this->render('login' , ['message' => "hello world"]);
    }
@@ -17,7 +18,7 @@ class DefaultController extends AppController{
             $url = "http://$_SERVER[HTTP_HOST]";
             header("Location: ${url}/chat");
         }
-        $email = 'test@test.pl';
+        $email = $_COOKIE['user'];
         $userRepository = new UserRepository();
         $user = $userRepository->getUser($email);
         $images = $userRepository->getUserImages($user);

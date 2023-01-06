@@ -6,7 +6,7 @@ require_once __DIR__.'/../repository/UserRepository.php';
 
 class SecurityController extends AppController
 {
-
+    private $userRepository;
     public function login()
     {
 
@@ -22,8 +22,8 @@ class SecurityController extends AppController
         $email = $_POST["email"];
         $password = $_POST["password"];
 
-        $userRepository = new UserRepository();
-        $user = $userRepository->getUser($email);
+        $this->userRepository = new UserRepository();
+        $user = $this->userRepository->getUser($email);
 
         if(!$user){
             return $this->render('login', ['messages'=> ['user not exits!']]);
@@ -60,8 +60,8 @@ class SecurityController extends AppController
         $email = $_POST["email"];
         $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
         $user = new User($email, $password);
-        $userRepository = new UserRepository();
-        $userRepository->addUser($user);
+        $this->userRepository = new UserRepository();
+        $this->userRepository->addUser($user);
 
         $user_cookie = 'user';
         $cookie_value = $email;
@@ -90,9 +90,8 @@ class SecurityController extends AppController
             header('Content-type: application/json');
 
             $email = 'test@test.pl';
-            $userRepository = new UserRepository();
-            $user = $userRepository->getUser($email);
-            $userRepository->addUserPrioritizedGame($user, $decoded['selected']);
+            $user = $this->userRepository->getUser($email);
+            $this->userRepository->addUserPrioritizedGame($user, $decoded['selected']);
 
             http_response_code(200);
         }
@@ -104,12 +103,11 @@ class SecurityController extends AppController
             $content = trim(file_get_contents("php://input"));
             header('Content-type: application/json');
 
-            $email = 'test@test.pl';
-            $userRepository = new UserRepository();
-            $user = $userRepository->getUser($email);
+            $email = $_COOKIE['user'];
+            $user = $this->userRepository->getUser($email);
 
             http_response_code(200);
-            echo json_encode($userRepository->getUserGames($user));
+            echo json_encode($this->userRepository->getUserGames($user));
         }
     }
 
@@ -119,12 +117,11 @@ class SecurityController extends AppController
             $content = trim(file_get_contents("php://input"));
             header('Content-type: application/json');
 
-            $email = 'test@test.pl';
-            $userRepository = new UserRepository();
-            $user = $userRepository->getUser($email);
+            $email = $_COOKIE['user'];
+            $user = $this->userRepository->getUser($email);
 
             http_response_code(200);
-            echo json_encode($userRepository->getNotUserGames($user));
+            echo json_encode($this->userRepository->getNotUserGames($user));
         }
     }
 
@@ -134,9 +131,8 @@ class SecurityController extends AppController
             $content = trim(file_get_contents("php://input"));
             header('Content-type: application/json');
 
-            $email = 'test@test.pl';
-            $userRepository = new UserRepository();
-            $user = $userRepository->getUser($email);
+            $email = $_COOKIE['user'];
+            $user = $this->userRepository->getUser($email);
             $decoded = json_decode($content, true);
             $gamename = $decoded['gamename'];
             if ($gamename == 'Select Game') {
@@ -144,7 +140,7 @@ class SecurityController extends AppController
                 return;
             }
             http_response_code(200);
-            $userRepository->addNewUserGame($user, $gamename);
+            $this->userRepository->addNewUserGame($user, $gamename);
         }
     }
 
@@ -154,11 +150,10 @@ class SecurityController extends AppController
             $content = trim(file_get_contents("php://input"));
             header('Content-type: application/json');
 
-            $email = 'test@test.pl';
-            $userRepository = new UserRepository();
-            $user = $userRepository->getUser($email);
+            $email = $_COOKIE['user'];
+            $user = $this->userRepository->getUser($email);
             $decoded = json_decode($content, true);
-            $userRepository->updateUserInfo($user, $decoded);
+            $this->userRepository->updateUserInfo($user, $decoded);
 
             http_response_code(200);
         }
@@ -174,14 +169,16 @@ class SecurityController extends AppController
             $content = trim(file_get_contents("php://input"));
             header('Content-type: application/json');
 
-            $email = 'test@test.pl';
-            $userRepository = new UserRepository();
-            $user = $userRepository->getUser($email);
+            $email = $_COOKIE['user'];
+            if($this->userRepository == null){
+                $this->userRepository = new UserRepository();
+            }
+            $user = $this->userRepository->getUser($email);
             $decoded = json_decode($content, true);
             if($decoded != null){
-                $userRepository->addFriendshipStatus($user, $decoded['action'], $decoded['email']);
+                $this->userRepository->addFriendshipStatus($user, $decoded['action'], $decoded['email']);
             }
-            $nextUser = $userRepository->getNextUserToShow($user);
+            $nextUser = $this->userRepository->getNextUserToShow($user);
 
             echo json_encode($nextUser);
             http_response_code(200);
